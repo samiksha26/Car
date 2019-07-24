@@ -1,25 +1,3 @@
-# Car
-index.htm
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>SAM</title>
-  
-</head>
-<body>
-
-<div class="container" style="">
-
-  <button  type="button" class="btn btn-dark"><a href="form.htm">New</a></button>
-  <button type="button" class="btn btn-light"><a href="show1.php">Search</a></button>
-  
-</div>
-
-</body>
-</html>
-
-
-form.htm
 <!DOCTYPE HTML>
 <html>
 <head>
