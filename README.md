@@ -1,60 +1,50 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Register Form</title>
-  
-  
-</head>
-<body>
-<h1 style="text-align: center"> CarModels </h1>		 
- <form action="database.php" method="POST">
-  <table>
-   <tr>
-    <td>Seller Name :</td>
-    <td><input type="text" name="username" required></td>
-   </tr>
-   <tr>
-    <td>Email :</td>
-    <td><input type="email" name="email" required></td>
-   </tr> 
-   <tr>
-    <td>Address :</td>
-    <td><input type="text" name="Address" required></td>
-   </tr>
-   <tr>
-    <td>City:</td>
-    <td><input type="text" name="City" required></td>
-   </tr>
-   <tr>
-    <td>Phone no :</td>
-    <td>
-    <input type="tel" pattern="^\(?(\d{3})\)?[-\. ]?(\d{3})[-\. ]?(\d{4})( x\d{4})?$" name="phone"  required>
-	Acceptable formats: 123-123-1234, or (123)123-1234)
-	</td>
-   </tr>
-    <tr>
-    <td>Vechile Make :</td>
-    <td><input type="text" name="Make" required></td>
-   </tr>
-       <tr>
-    <td>Vechile Model :</td>
-    <td><input type="text" name="Model" required></td>
-   </tr>
-       <tr>
-    <td>Vechile Year :</td>
-    <td><input type="Number" name="Year" required></td>
-   </tr>
-   <tr>
-    <td><input type="submit" value="Submit"></td>
-   </tr>
-  </table>
- </form>
+  </head>
+ <body>
+<h1 style="text-align: center"> List of Car Model </h1>		
+<div> 
+<?php
+$servername = "localhost";
+$username1 = "root";
+$password = "";
+$dbname = "my_database";
+
+
+$conn = new mysqli($servername, $username1, $password, $dbname);
+
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+
+$sql = "SELECT username, email,Address,City,Make,Model,Year,phone,url FROM my_guest";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    
+    while($row = $result->fetch_assoc()) {
+		
+        echo "<br> Seller Name:- " .  $row["username"]. "  Email:-   "  .   $row["email"]  . " Address:-  " .  $row["Address"]  . " City:-  "   .   $row["City"]  .  " Vechile Make:-  "   .   $row["Make"] . " Vechile Model:-  "   .   $row["Model"]  .  "  Vechile Year:- "   .   $row["Year"] ." Phone:-  " .  $row["phone"] ;
+    echo "<a href='".$row["url"]."'> ".$row["url"]." </a><br>";
+
+
+}
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?> 
+</div>
  <div class="container" style="margin-left:px">
 
-  <button  type="button" class="btn btn-dark"><a href="index.htm">Back</a></button>
-  <button type="button" class="btn btn-light"><a href="show1.php">Display</a></button>
+  <button  type="button" class="btn btn-dark"><a href="index.htm">Home</a></button>
+  <button type="button" class="btn btn-light"><a href="form.htm">New</a></button>
 
 </div>
-	 
 </body>
 </html>
